@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple AI Chat</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    width: 400px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px #00ffff;
+}
+
+#chat-box {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+input {
+    width: 75%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    width: 20%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #00ffff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+    <h2>AI Chat Bot 🤖</h2>
+    <div id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("user-input");
+    let message = input.value;
+    let chatBox = document.getElementById("chat-box");
+
+    if(message === "") return;
+
+    chatBox.innerHTML += "<p><b>You:</b> " + message + "</p>";
+
+    let response = getAIResponse(message);
+
+    setTimeout(() => {
+        chatBox.innerHTML += "<p><b>AI:</b> " + response + "</p>";
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }, 500);
+
+    input.value = "";
+}
+
+function getAIResponse(message) {
+    message = message.toLowerCase();
+
+    if(message.includes("hello")) return "Hello! How can I help you today?";
+    if(message.includes("how are you")) return "I am just code, but I'm feeling smart today 😎";
+    if(message.includes("your name")) return "I am your simple AI assistant 🤖";
+    if(message.includes("bye")) return "Goodbye! Have a great day!";
+    
+    return "That's interesting! Tell me more.";
+}
+</script>
+
+</body>
+</html>
