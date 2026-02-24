@@ -1,2 +1,0 @@
-# AI-
-explore ai 
